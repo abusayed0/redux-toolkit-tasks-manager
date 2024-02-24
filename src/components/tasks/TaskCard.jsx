@@ -1,6 +1,6 @@
 import { ArrowRightIcon, TrashIcon } from '@heroicons/react/24/outline';
 import { useDispatch } from 'react-redux';
-import { deleteTask } from '../../redux/features/tasks/tasksSlice';
+import { changeStatus, deleteTask } from '../../redux/features/tasks/tasksSlice';
 
 const TaskCard = ({task}) => {
   const dispatch = useDispatch();
@@ -25,7 +25,8 @@ const TaskCard = ({task}) => {
             <TrashIcon className="h-5 w-5 text-red-500" />
           </button>
           <button
-            title="In progress"
+            onClick={() => dispatch(changeStatus(task.id))}
+            title="change staus"
           >
             <ArrowRightIcon className="h-5 w-5 text-primary" />
           </button>

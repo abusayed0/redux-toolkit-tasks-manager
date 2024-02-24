@@ -20,12 +20,24 @@ const tasksSlice = createSlice({
             
         },
         changeStatus: (state, {payload}) => {
-            
+            const target = state.tasks.find(item => item.id === payload);
+            console.log(target.status);
+            if(target.status === "pending"){
+                target.status = "onGoing";
+            }
+           
+            else if(target.status === "onGoing"){
+                
+                target.status = "done";
+            }
+            else{
+                target.status = "archive";
+            }
         }
     },
 
 });
 
-export const {addTask, deleteTask} = tasksSlice.actions;
+export const {addTask, deleteTask, changeStatus} = tasksSlice.actions;
 
 export default tasksSlice.reducer;
