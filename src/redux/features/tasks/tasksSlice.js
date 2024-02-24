@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, nanoid } from "@reduxjs/toolkit";
 const initialState = {
 tasks: []
 };
@@ -6,11 +6,15 @@ const tasksSlice = createSlice({
     name: "tasks",
     initialState,
     reducers: {
-        addTask : (state, action) => {
-
+        addTask : (state, {payload}) => {
+            state.tasks.push({
+                ...payload,
+                id: nanoid(),
+                status: "pending"
+            });
         },
-        deleteTask : (state, action) => {
-
+        deleteTask : (state, {payload}) => {
+            state.tasks.filter(item => item.id !== payload.id)
         },
     },
 
